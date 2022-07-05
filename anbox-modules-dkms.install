@@ -1,0 +1,46 @@
+post_install() {
+    echo "==>> Building & Installing Modules (binder)"
+    cp -rf /usr/src/binder-1 /tmp/binder_install
+    cd /tmp/binder_install
+    make
+    make DESTDIR="/usr/src/binder-1" install
+    echo "==>> Building & Installing Modules (ashmem)"
+    cp -rf /usr/src/ashmem-1 /tmp/ashmem_install
+    cd "/tmp/ashmem_install"
+    make
+    make DESTDIR="/usr/src/ashmem-1" install
+    echo "==>> Cleaning Up"    
+    rm -rf /tmp/ashmem_install
+    rm -rf /tmp/binder_install
+    echo "==>> Loading Anbox Modules"
+    modprobe binder_linux devices=binder,hwbinder,vndbinder,anbox-binder,anbox-hwbinder,anbox-vndbinder
+    modprobe ashmem_linux
+    mkinitcpio -P
+}
+
+post_upgrade() {
+    echo "==>> Building & Installing Modules (binder)"
+    cp -rf /usr/src/binder-1 /tmp/binder_install
+    cd /tmp/binder_install
+    make
+    make DESTDIR="/usr/src/binder-1" install
+    echo "==>> Building & Installing Modules (ashmem)"
+    cp -rf /usr/src/ashmem-1 /tmp/ashmem_install
+    cd "/tmp/ashmem_install"
+    make
+    make DESTDIR="/usr/src/ashmem-1" install
+    echo "==>> Cleaning Up"    
+    rm -rf /tmp/ashmem_install
+    rm -rf /tmp/binder_install
+    echo "==>> Loading Anbox Modules"
+    modprobe binder_linux devices=binder,hwbinder,vndbinder,anbox-binder,anbox-hwbinder,anbox-vndbinder
+    modprobe ashmem_linux
+    mkinitcpio -P
+}
+
+post_remove() {
+    echo "==>> Cleaning Up Leftover Remains"
+    rm -rf /usr/src/ashmem-1
+    rm -rf /usr/src/binder-1
+    mkinitcpio -P
+}
