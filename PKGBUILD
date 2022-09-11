@@ -4,11 +4,11 @@
 # Contributer: Mohammad Hisham Sayed <drhishamsayed128@protonmail.com>
 
 pkgname=anbox-modules-dkms
-pkgver=5.18
+pkgver=5.19
 arch="$(uname -r)"
 url='https://gitlab.com/liyalinux/anbox-modules-dkms'
 pkgrel=2
-pkgdesc='Android kernel driver fork by @choff (binder/binderfs & ashmem) in DKMS format, Patched For 5.18 Kernel'
+pkgdesc='Anbox ashmem and binder drivers, Patched For 5.19 Kernel'
 arch=('x86_64' 'aarch64' 'i386')
 license=('GPL3')
 provides=("${pkgname}")
@@ -24,9 +24,7 @@ package() {
   install -dm755 "${pkgdir}/usr/src/binder-1"
   install -dm755 "${pkgdir}/usr/src/ashmem-1"
   install -dm755 "${pkgdir}/etc/modules-load.d"
-  install -dm755 "${pkgdir}/usr/lib/udev/rules.d"
   cp -rf "${srcdir}/${pkgname}/anbox.conf" "${pkgdir}/etc/modules-load.d/"
-  cp -rf "${srcdir}/${pkgname}/99-anbox.rules" "${pkgdir}/usr/lib/udev/rules.d/"
   cp -rT "${srcdir}/${pkgname}/binder" "${pkgdir}/usr/src/binder-1/"
   cp -rT "${srcdir}/${pkgname}/ashmem" "${pkgdir}/usr/src/ashmem-1/"
 }
