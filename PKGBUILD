@@ -4,11 +4,11 @@
 # Contributer: Mohammad Hisham Sayed <drhishamsayed128@protonmail.com>
 
 pkgname=anbox-modules-dkms
-pkgver=5.19
+pkgver=6.2
 arch="$(uname -r)"
-url='https://gitlab.com/liyalinux/anbox-modules-dkms'
+url='https://gitlab.com/liyalinux/${pkgname}'
 pkgrel=4
-pkgdesc='Anbox ashmem and binder drivers, Patched For 5.19 Kernel'
+pkgdesc='Anbox ashmem and binder drivers, Patched For 6.2 Kernel'
 arch=('x86_64' 'aarch64' 'i386')
 license=('GPL3')
 provides=("${pkgname}")
